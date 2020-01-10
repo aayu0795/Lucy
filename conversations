@@ -2,3 +2,52 @@ Conversation history
 
 (You)   Hi
 (Lucy)  Hi user, good afternoon
+
+
+(You)   Hi
+(Lucy)  Hi user, good evening
+(You)   Time
+(Lucy)  The time is, 9:55 pm
+(You)   Thank you
+(Lucy)  My pleasure.
+(You)   Exit
+(Lucy)  Bye bye user, have a nice day
+
+
+(You)   I want to know something
+(Lucy)  What you want know to know
+
+
+(You)   I want to know something
+(Lucy)  What you want to know
+(You)   Machine learning
+(Lucy)  Machine learning (ml) is the scientific study of algorithms and statistical models that computer systems use to perform a specific task without using explicit instructions, relying on patterns and inference instead. it is seen as a subset of artificial intelligence. machine learning algorithms build a mathematical model based on sample data, known as "training data", in order to make predictions or decisions without being explicitly programmed to perform the task. machine learning algorithms are used in a wide variety of applications, such as email filtering and computer vision, where it is difficult or infeasible to develop a conventional algorithm for effectively performing the task.
+machine learning is closely related to computational statistics, which focuses on making predictions using computers. the study of mathematical optimization delivers methods, theory and application domains to the field of machine learning. data mining is a field of study within machine learning, and focuses on exploratory data analysis through unsupervised learning. in its application across business problems, machine learning is also referred to as predictive analytics.
+(You)   I want to know something
+(Lucy)  What you want to know
+(You)   Rajnikant
+
+
+(You)   Noc
+(Lucy)  Sorry. i didn't get you, please repeat
+
+
+(You)   Who is shahrukh khan
+(Lucy)  Let me see, what i can find
+(Lucy)  Shah rukh khan (born 2 november 1965), also known by the initialism srk, is an indian actor, film producer, and television personality. referred to in the media as the "badshah of bollywood", "king of bollywood" and "king khan", he has appeared in more than 80 bollywood films, and earned numerous accolades, including 14 filmfare awards. the government of india has awarded him the padma shri, the fourth-highest indian civilian honour, and the government of france the officier of the ordre des arts et des lettres, the second-degree of the honour, and the chevalier of the legion of honour, the fifth degree of the honour
+(Lucy)  Do you want me to read more
+(Lucy)   khan has a significant following in asia and the indian diaspora worldwide. in terms of audience size and income, he has been described as one of the most successful film stars in the world.khan began his career with appearances in several television series in the late 1980s. he made his bollywood debut in 1992 with deewana. early in his career, khan was recognised for portraying villainous roles in the films darr (1993), baazigar (1993) and anjaam (1994). he then rose to prominence after starring in a series of romantic films, including dilwale dulhania le jayenge (1995), dil to pagal hai (1997), kuch kuch hota hai (1998), mohabbatein (2000) and kabhi khushi kabhie gham... (2001). khan went on to earn critical acclaim for his portrayal of an alcoholic in devdas (2002), a nasa scientist in swades (2004), a hockey coach in chak de! india (2007) and a man with asperger syndrome in my name is khan (2010). his highest-grossing films include the comedies chennai express (2013), happy new year (2014), dilwale (2015), and the crime film raees (2017). many of his films display themes of indian national identity and connections with diaspora communities, or gender, racial, social and religious differences and grievances.
+as of 2015, khan is co-chairman of the motion picture production company red chillies entertainment and its subsidiaries, and is the co-owner of the indian premier league cricket team kolkata knight riders and the caribbean premier league team trinbago knight riders. he is a frequent television presenter and stage show performer. the media often label him as "brand srk" because of his many endorsement and entrepreneurship ventures. khan's philanthropic endeavours have provided health care and disaster relief, and he was honoured with unesco's pyramide con marni award in 2011 for his support of children's education and the world economic forum's crystal award in 2018 for his leadership in championing women's and children's rights in india. he regularly features in listings of the most influential people in indian culture, and in 2008, newsweek named him one of their fifty most powerful people in the world.
+(You)   Bye-bye
+(Lucy)  Bye bye user, have a nice day
+
+
+(You)   Hi lucy
+(Lucy)  Hi user, good evening
+(You)   What is python
+(Lucy)  Let me see, what i can find
+(Lucy)  Python is an interpreted, high-level, general-purpose programming language. created by guido van rossum and first released in 1991, python's design philosophy emphasizes code readability with its notable use of significant whitespace. its language constructs and object-oriented approach aim to help programmers write clear, logical code for small and large-scale projects
+(Lucy)  Do you want me to read more
+(Lucy)  Python is dynamically typed and garbage-collected. it supports multiple programming paradigms, including procedural, object-oriented, and  functional programming. python is often described as a "batteries included" language due to its comprehensive standard library.python was conceived in the late 1980s as a successor to the abc language. python 2.0, released in 2000, introduced features like list comprehensions and a garbage collection system capable of collecting reference cycles. python 3.0, released in 2008, was a major revision of the language that is not completely backward-compatible, and much python 2 code does not run unmodified on python 3.
+the python 2 language, i.e. python 2.7.x, was officially discontinued on january 1, 2020 (first planned for 2015) after which security patches and other improvements will not be released for it. with python 2's end-of-life, only  python 3.5.x and later are supported.
+python interpreters are available for many operating systems. a global community of programmers develops and maintains cpython, an open source reference implementation. a non-profit organization, the python software foundation, manages and directs resources for python and cpython development.
