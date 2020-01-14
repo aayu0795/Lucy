@@ -42,7 +42,7 @@ def command():
             return cmd_text.lower()
 
     except sr.RequestError as e:
-        lucy_response("Could not request results; {0}".format(e))
+        lucy_response("Establishing internet connection failed with error; {0}".format(e))
 
     except sr.UnknownValueError:
         return None
@@ -85,7 +85,7 @@ def assistance():
         elif 'how do you do' == cmd_text or "how's you" == cmd_text or cmd_text == 'how are you':
             lucy_response('I am good, what about you')
 
-        elif 'your name' in cmd_text:
+        elif 'your name' in cmd_text or 'who are you' in cmd_text:
             lucy_response('my name is Lucifer, you can call me lucy')
 
         elif 'made you' in cmd_text:
@@ -164,16 +164,8 @@ def assistance():
             lucy_response('Which song would you like to play')
             cmd_text = command()
 
-            if cmd_text is None:
-                lucy_response('Which song would you like to play')
-                cmd_text = command()
-                if cmd_text is not None:
-                    url = "https://www.youtube.com/results?search_query=" + cmd_text.replace(' ', '+')
-                    webbrowser.open(url)
-            elif cmd_text == 'nothing':
-                lucy_response('Okay')
-
-            elif cmd_text is not None:
+            if cmd_text is not None:
+                lucy_response('playing ' + cmd_text )
                 url = "https://www.youtube.com/results?search_query=" + cmd_text.replace(' ', '+')
                 webbrowser.open(url)
 
