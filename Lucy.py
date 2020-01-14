@@ -5,15 +5,9 @@ import speech_recognition as sr
 import pyttsx3
 import os
 import wikipedia
-import random
 from datetime import datetime
 from tkinter import *
 from PIL import ImageTk, Image
-
-t_list = ["You're welcome.", "No problem.", "No worries.", "Don't mention it.",
-          "My pleasure.", "Anytime.", "It was the least I could do.", "Glad to help."]
-
-thanks = ''
 
 now = datetime.now()
 lucy = pyttsx3.init()
@@ -59,7 +53,7 @@ def assistance():
 
     if cmd_text is not None:
 
-        if cmd_text == 'hi lucy' or cmd_text == 'hi' or cmd_text == 'hey' or cmd_text == 'hello':
+        if cmd_text == 'hi' or cmd_text == 'hey' or cmd_text == 'hello':
 
             if hour < 12:
                 lucy_response('Hi User, Good morning')
@@ -109,16 +103,17 @@ def assistance():
             webbrowser.open('https://www.{}.com/'.format(new_cmd))
 
         elif 'time' in cmd_text:
-            if hour - 12 == 0 or -12:
-                lucy_response(('the time is, {0}:{1} {2}'.format(12, now.strftime('%M'), am_pm())))
+            if (hour - 12 == 0) or (hour - 12 == -12):
+                print(hour)
+                lucy_response(('the time is, 12:{} {}'.format(now.strftime('%M'), am_pm())))
             else:
-                lucy_response(('the time is, {}:{} {}'.format(hour, now.strftime('%M'), am_pm())))
+                lucy_response(('the time is, {}:{} {}'.format((hour - 12), now.strftime('%M'), am_pm())))
 
         elif 'date' in cmd_text:
             lucy_response(('the date is, {}'.format(now.strftime("%A %d. %B %Y"))))
 
-        elif 'repeat' in cmd_text:
-            new_cmd = str(cmd_text).replace('repeat', '')
+        elif 'repeat after me' in cmd_text:
+            new_cmd = str(cmd_text).replace('repeat after me', '')
             lucy_response(new_cmd)
 
         elif 'control panel' in cmd_text:
@@ -163,9 +158,7 @@ def assistance():
             lucy_response('I am trying my best, sorry for the delay')
 
         elif 'thank' in cmd_text:
-            global thanks
-            thanks = random.choice(t_list)
-            lucy_response(thanks)
+            lucy_response("You're welcome")
 
         elif 'play' in cmd_text:
             lucy_response('Which song would you like to play')
