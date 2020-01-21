@@ -5,15 +5,9 @@ import speech_recognition as sr
 import pyttsx3
 import os
 import wikipedia
-import random
 from datetime import datetime
 from tkinter import *
 from PIL import ImageTk, Image
-
-t_list = ["You're welcome.", "No problem.", "No worries.", "Don't mention it.",
-          "My pleasure.", "Anytime.", "It was the least I could do.", "Glad to help."]
-
-thanks = ''
 
 now = datetime.now()
 lucy = pyttsx3.init()
@@ -48,7 +42,7 @@ def command():
             return cmd_text.lower()
 
     except sr.RequestError as e:
-        lucy_response("Could not request results; {0}".format(e))
+        lucy_response("Establishing internet connection failed with error {0}".format(e))
 
     except sr.UnknownValueError:
         return None
@@ -59,7 +53,7 @@ def assistance():
 
     if cmd_text is not None:
 
-        if cmd_text == 'hi lucy' or cmd_text == 'hi' or cmd_text == 'hey' or cmd_text == 'hello':
+        if cmd_text == 'hi' or cmd_text == 'hey' or cmd_text == 'hello':
 
             if hour < 12:
                 lucy_response('Hi User, Good morning')
@@ -91,7 +85,7 @@ def assistance():
         elif 'how do you do' == cmd_text or "how's you" == cmd_text or cmd_text == 'how are you':
             lucy_response('I am good, what about you')
 
-        elif 'your name' in cmd_text:
+        elif 'your name' in cmd_text or 'who are you' in cmd_text:
             lucy_response('my name is Lucifer, you can call me lucy')
 
         elif 'made you' in cmd_text:
@@ -109,16 +103,18 @@ def assistance():
             webbrowser.open('https://www.{}.com/'.format(new_cmd))
 
         elif 'time' in cmd_text:
-            if hour - 12 == 0 or -12:
-                lucy_response(('the time is, {0}:{1} {2}'.format(12, now.strftime('%M'), am_pm())))
+            if (hour - 12 == 0) or (hour - 12 == -12):
+                lucy_response(('the time is, 12:{} {}'.format(now.strftime('%M'), am_pm())))
+            elif hour > 12:
+                lucy_response(('the time is, {}:{} {}'.format((hour - 12), now.strftime('%M'), am_pm())))
             else:
                 lucy_response(('the time is, {}:{} {}'.format(hour, now.strftime('%M'), am_pm())))
 
         elif 'date' in cmd_text:
             lucy_response(('the date is, {}'.format(now.strftime("%A %d. %B %Y"))))
 
-        elif 'repeat' in cmd_text:
-            new_cmd = str(cmd_text).replace('repeat', '')
+        elif 'repeat after me' in cmd_text:
+            new_cmd = str(cmd_text).replace('repeat after me', '')
             lucy_response(new_cmd)
 
         elif 'control panel' in cmd_text:
@@ -134,9 +130,9 @@ def assistance():
             os.system("notepad")
 
         elif 'joke' in cmd_text:
-            response = requests.get('https://icanhazdadjoke.com/', headers={"Accept": "application/json"})
+            response = requests.get('http://127.0.0.1:8000/joke/', headers={"Accept": "application/json"})
             if response.status_code == requests.codes.ok:
-                lucy_response(str(response.json()['joke']))
+                lucy_response(str(response.json()[0]['joke']))
 
             else:
                 lucy_response('oops!I ran out of jokes')
@@ -163,24 +159,14 @@ def assistance():
             lucy_response('I am trying my best, sorry for the delay')
 
         elif 'thank' in cmd_text:
-            global thanks
-            thanks = random.choice(t_list)
-            lucy_response(thanks)
+            lucy_response("You're welcome")
 
         elif 'play' in cmd_text:
             lucy_response('Which song would you like to play')
             cmd_text = command()
 
-            if cmd_text is None:
-                lucy_response('Which song would you like to play')
-                cmd_text = command()
-                if cmd_text is not None:
-                    url = "https://www.youtube.com/results?search_query=" + cmd_text.replace(' ', '+')
-                    webbrowser.open(url)
-            elif cmd_text == 'nothing':
-                lucy_response('Okay')
-
-            elif cmd_text is not None:
+            if cmd_text is not None:
+                lucy_response('playing ' + cmd_text )
                 url = "https://www.youtube.com/results?search_query=" + cmd_text.replace(' ', '+')
                 webbrowser.open(url)
 
@@ -224,11 +210,6 @@ def assistance():
                 lucy_response('.'.join(wiki_data[3:]))
             else:
                 lucy_response('Okay')
-
-        elif 'open' in cmd_text and 'computer' in cmd_text:
-            new_cmd = (str(cmd_text).replace('open', '')).strip()
-            os.startfile('computer.lnk')
-            lucy_response('Opening ' + new_cmd.capitalize())
 
         else:
             lucy_response("Sorry. I didn't get you, please repeat")
