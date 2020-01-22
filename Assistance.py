@@ -7,6 +7,7 @@ import winsound
 import webbrowser
 from datetime import datetime
 import speech_recognition as sr
+from wikipedia import wikipedia
 
 
 class Assistance:
@@ -182,3 +183,26 @@ class Assistance:
     def sorry(self):
         self.lucy.say("Sorry, I didn't get you.")
         self.lucy.runAndWait()
+
+    def wikipedia(self):
+        self.lucy.say('What you want to know')
+        self.lucy.runAndWait()
+        winsound.PlaySound('init.wav', winsound.SND_ASYNC)
+        cmd_text = self.command()
+        self.lucy.say('Let me see, what i can find')
+        self.lucy.runAndWait()
+        wiki_data = wikipedia.summary(cmd_text).split('.')
+        self.lucy.say('.'.join(wiki_data[:3]))
+        self.lucy.runAndWait()
+        self.lucy.say('Do you want me to read more')
+        self.lucy.runAndWait()
+        winsound.PlaySound('init.wav', winsound.SND_ASYNC)
+        cmd_text = self.command()
+        winsound.PlaySound('init.wav', winsound.SND_ASYNC)
+        if 'yes' in cmd_text and cmd_text is not None:
+            self.lucy.say('.'.join(wiki_data[3:]))
+            self.lucy.runAndWait()
+        else:
+            self.lucy.say('Okay')
+            self.lucy.runAndWait()
+

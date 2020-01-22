@@ -9,7 +9,6 @@ while True:
     print(command.upper())
 
     if 'hello lucy' in command:
-        print("Lucy activated".upper())
 
         winsound.PlaySound('init.wav', winsound.SND_ASYNC)
 
@@ -113,6 +112,11 @@ while True:
 
         elif 'girlfriend' in command:
             obj.cant_answer()
+            winsound.PlaySound('stop.wav', winsound.SND_ASYNC)
+            continue
+
+        elif 'want to know' in command:
+            obj.wikipedia()
             winsound.PlaySound('stop.wav', winsound.SND_ASYNC)
             continue
 
