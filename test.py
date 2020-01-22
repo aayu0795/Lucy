@@ -1,8 +1,5 @@
+import winsound
 import time
 
-c10 =  int(time.time() + 10)
-print('c10', c10)
-
-while c10 != int(time.time()):
-    time.sleep(1)
-    print(time.time())
+winsound.PlaySound('blip.wav', winsound.SND_ASYNC)
+time.sleep(1)

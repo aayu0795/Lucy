@@ -1,6 +1,6 @@
 import os
-import time
 import parser
+import winsound
 import pyttsx3
 import webbrowser
 import requests
@@ -38,8 +38,9 @@ class Assistance:
         r = sr.Recognizer()
         with sr.Microphone() as user_command:
             r.pause_threshold = 1
-            r.adjust_for_ambient_noise(user_command)
-            cmd_audio = r.listen(user_command)
+            r.adjust_for_ambient_noise(user_command, duration=0.2)
+            winsound.PlaySound('blip.wav', winsound.SND_ASYNC)
+            cmd_audio = r.listen(user_command, phrase_time_limit=5)
         try:
             cmd_text = r.recognize_google(cmd_audio, language='en-US')
             return cmd_text.lower()
@@ -95,7 +96,7 @@ class Assistance:
             webbrowser.open('https://www.{}.com/'.format(new_cmd))
 
     def time(self):
-        if self.hour - 12 == 0 and self.hour - 12 == -12:
+        if self.hour - 12 == 0 or self.hour - 12 == -12:
             self.lucy.say(('The time is, {}:{} {}'.format(12, self.now.strftime('%M'), self.am_pm())))
             self.lucy.runAndWait()
         elif self.hour > 12:
@@ -128,16 +129,6 @@ class Assistance:
         self.lucy.say('Opening chrome')
         self.lucy.runAndWait()
         os.system('start chrome')
-
-    def pycharm(self):
-        self.lucy.say('Opening pycharm')
-        self.lucy.runAndWait()
-        os.system('start pycharm')
-
-    def computer(self):
-        self.lucy.say('Opening My computer')
-        self.lucy.runAndWait()
-        os.system('start computer')
 
     def joke(self):
         response = requests.get('https://icanhazdadjoke.com/', headers={"Accept": "application/json"})
@@ -190,25 +181,98 @@ class Assistance:
         self.lucy.runAndWait()
 
 
-if __name__ =='__main__':
+if __name__ == '__main__':
+
     obj = Assistance()
 
     while True:
-        print('main loop')
-        cmd_text = obj.command()
-        print(cmd_text)
+        command = obj.command()
 
-        if 'lucy' in cmd_text:
-            print('Activated')
+        if 'hello lucy' in command:
+
             obj.hi()
-            current_time = time.time()
-            while current_time + 15 != time.time():
-                print('sub loop')
-                cmd_text = obj.command()
-                print(cmd_text)
-                if 'exit' in cmd_text:
-                    obj.bye()
-                    break
 
-                else:
-                    obj.sorry()
+            command = obj.command()
+
+            if 'introduce' in command:
+                obj.introduce()
+                continue
+
+            elif 'how are you' in command or 'how' in command and 'you' in command:
+                obj.greetings()
+                continue
+
+            elif 'calculate' in command:
+                obj.calculate()
+                continue
+
+            elif 'you' in command and 'name' in command:
+                obj.name()
+                continue
+
+            elif 'made' in command or 'maker' in command:
+                obj.maker()
+                continue
+
+            elif 'joke' in command:
+                obj.joke()
+                continue
+
+            elif 'time' in command:
+                obj.time()
+                continue
+
+            elif 'date' in command:
+                obj.date()
+                continue
+
+            elif 'open website' in command:
+                obj.open_website()
+                continue
+
+            elif 'open chrome' in command:
+                obj.chrome()
+                continue
+
+            elif 'control panel' in command:
+                obj.control_panel()
+                continue
+
+            elif 'cmd' in command or 'command prompt' in command:
+                obj.command_prompt()
+                continue
+
+            elif 'open notepad' in command:
+                obj.notepad()
+                continue
+
+            elif 'weather' in command:
+                obj.weather()
+                continue
+
+            elif 'temperature' in command:
+                obj.temprature()
+                continue
+
+            elif 'thank' in command:
+                obj.thanks()
+                continue
+
+            elif 'play' in command:
+                obj.play()
+                continue
+
+            elif 'slow' in command:
+                obj.slow()
+                continue
+
+            elif 'exit' in command or 'bye' in command or 'shutdown' in command:
+                obj.bye()
+                break
+
+            elif 'girlfriend' in command:
+                obj.cant_answer()
+                continue
+
+            else:
+                obj.sorry()
