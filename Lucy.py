@@ -9,11 +9,17 @@ import speech_recognition as sr
 
 
 class Assistance:
-
     now = datetime.now()
     lucy = pyttsx3.init()
     lucy.setProperty('rate', 140)
     hour = int(now.strftime('%H'))
+    time = ''
+
+    def am_pm(self):
+        if int(self.hour) < 12:
+            return 'AM'
+        else:
+            return "PM"
 
     def hi(self):
         if self.hour < 12:
@@ -28,18 +34,11 @@ class Assistance:
             self.lucy.say('Hi User, Good evening')
             self.lucy.runAndWait()
 
-    def am_pm(self):
-        if int(self.hour) < 12:
-            return 'AM'
-        else:
-            return "PM"
-
     def command(self):
         r = sr.Recognizer()
         with sr.Microphone() as user_command:
             r.pause_threshold = 1
             r.adjust_for_ambient_noise(user_command, duration=0.2)
-            winsound.PlaySound('blip.wav', winsound.SND_ASYNC)
             cmd_audio = r.listen(user_command, phrase_time_limit=5)
         try:
             cmd_text = r.recognize_google(cmd_audio, language='en-US')
@@ -184,95 +183,122 @@ class Assistance:
 if __name__ == '__main__':
 
     obj = Assistance()
+    now = datetime.now()
 
     while True:
+
         command = obj.command()
+        print(command.upper())
 
-        if 'hello lucy' in command:
+        if 'lucy' in command:
+            print("Lucy activated".upper())
 
-            obj.hi()
+            winsound.PlaySound('init.wav', winsound.SND_ASYNC)
 
             command = obj.command()
+            print(command.upper())
 
             if 'introduce' in command:
                 obj.introduce()
+                winsound.PlaySound('stop.wav', winsound.SND_ASYNC)
                 continue
 
             elif 'how are you' in command or 'how' in command and 'you' in command:
                 obj.greetings()
+                winsound.PlaySound('stop.wav', winsound.SND_ASYNC)
                 continue
 
             elif 'calculate' in command:
                 obj.calculate()
+                winsound.PlaySound('stop.wav', winsound.SND_ASYNC)
                 continue
 
             elif 'you' in command and 'name' in command:
                 obj.name()
+                winsound.PlaySound('stop.wav', winsound.SND_ASYNC)
                 continue
 
             elif 'made' in command or 'maker' in command:
                 obj.maker()
+                winsound.PlaySound('stop.wav', winsound.SND_ASYNC)
                 continue
 
             elif 'joke' in command:
                 obj.joke()
+                winsound.PlaySound('stop.wav', winsound.SND_ASYNC)
                 continue
 
             elif 'time' in command:
                 obj.time()
+                winsound.PlaySound('stop.wav', winsound.SND_ASYNC)
                 continue
 
             elif 'date' in command:
                 obj.date()
+                winsound.PlaySound('stop.wav', winsound.SND_ASYNC)
                 continue
 
             elif 'open website' in command:
                 obj.open_website()
+                winsound.PlaySound('stop.wav', winsound.SND_ASYNC)
                 continue
 
             elif 'open chrome' in command:
                 obj.chrome()
+                winsound.PlaySound('stop.wav', winsound.SND_ASYNC)
                 continue
 
             elif 'control panel' in command:
                 obj.control_panel()
+                winsound.PlaySound('stop.wav', winsound.SND_ASYNC)
                 continue
 
             elif 'cmd' in command or 'command prompt' in command:
                 obj.command_prompt()
+                winsound.PlaySound('stop.wav', winsound.SND_ASYNC)
                 continue
 
             elif 'open notepad' in command:
                 obj.notepad()
+                winsound.PlaySound('stop.wav', winsound.SND_ASYNC)
                 continue
 
             elif 'weather' in command:
                 obj.weather()
+                winsound.PlaySound('stop.wav', winsound.SND_ASYNC)
                 continue
 
             elif 'temperature' in command:
                 obj.temprature()
+                winsound.PlaySound('stop.wav', winsound.SND_ASYNC)
                 continue
 
             elif 'thank' in command:
                 obj.thanks()
+                winsound.PlaySound('stop.wav', winsound.SND_ASYNC)
                 continue
 
             elif 'play' in command:
                 obj.play()
+                winsound.PlaySound('stop.wav', winsound.SND_ASYNC)
                 continue
 
             elif 'slow' in command:
                 obj.slow()
+                winsound.PlaySound('stop.wav', winsound.SND_ASYNC)
                 continue
 
             elif 'exit' in command or 'bye' in command or 'shutdown' in command:
                 obj.bye()
+                winsound.PlaySound('stop.wav', winsound.SND_ASYNC)
                 break
 
             elif 'girlfriend' in command:
                 obj.cant_answer()
+                winsound.PlaySound('stop.wav', winsound.SND_ASYNC)
                 continue
 
             else:
                 obj.sorry()
+                winsound.PlaySound('stop.wav', winsound.SND_ASYNC)
+                continue
