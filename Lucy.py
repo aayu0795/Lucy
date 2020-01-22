@@ -13,7 +13,6 @@ class Assistance:
     lucy = pyttsx3.init()
     lucy.setProperty('rate', 140)
     hour = int(now.strftime('%H'))
-    time = ''
 
     def am_pm(self):
         if int(self.hour) < 12:
@@ -183,7 +182,6 @@ class Assistance:
 if __name__ == '__main__':
 
     obj = Assistance()
-    now = datetime.now()
 
     while True:
 
