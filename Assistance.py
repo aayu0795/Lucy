@@ -12,7 +12,7 @@ from wikipedia import wikipedia
 
 class Assistance:
     lucy = pyttsx3.init()
-    lucy.setProperty('rate', 140)
+    lucy.setProperty('rate', 150)
 
     def am_pm(self):
         hour = int(time.strftime('%H'))

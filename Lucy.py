@@ -8,7 +8,7 @@ while True:
     command = obj.command()
     print(command.upper())
 
-    if 'hello lucy' in command:
+    if command in ['lucy', 'uc', 'loc', 'blue sea']:
 
         winsound.PlaySound('init.wav', winsound.SND_ASYNC)
 
