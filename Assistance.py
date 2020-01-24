@@ -1,4 +1,5 @@
 import os
+import cv2
 import time
 import parser
 import pyttsx3
@@ -71,7 +72,7 @@ class Assistance:
             self.lucy.runAndWait()
 
     def greetings(self):
-        self.lucy.say('I am good, what about you')
+        self.lucy.say('I am good, Thanks for asking')
         self.lucy.runAndWait()
 
     def name(self):
@@ -206,3 +207,11 @@ class Assistance:
             self.lucy.say('Okay')
             self.lucy.runAndWait()
 
+    def capture(self):
+        video_capture = cv2.VideoCapture(0, cv2.CAP_DSHOW)
+        ret, frame = video_capture.read(0)
+        winsound.PlaySound('click.wav', winsound.SND_ASYNC)
+        cv2.flip(frame, 1, frame)
+        cv2.imwrite('img.jpg', frame)
+        time.sleep(1)
+        cv2.destroyAllWindows()

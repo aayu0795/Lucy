@@ -1,9 +1,13 @@
-import winsound
+import cv2
 import time
-from datetime import datetime
 
-now = datetime.now()
+curr = int(time.time())
+video_capture = cv2.VideoCapture(0)
 
-while True:
-    print(time.strftime('%H:%M:%S'))
-    time.sleep(1)
+while curr + 25 != int(time.time()):
+    ret, frame = video_capture.read(0)
+    cv2.flip(frame, 1, frame)
+    cv2.imshow('ori', frame)
+    cv2.waitKey(5)
+
+cv2.destroyAllWindows()

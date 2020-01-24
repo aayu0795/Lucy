@@ -6,14 +6,14 @@ obj = Assistance()
 while True:
 
     command = obj.command()
-    print(command.upper())
+    # print(command.upper())
 
     if command in ['lucy', 'uc', 'loc', 'blue sea']:
 
         winsound.PlaySound('init.wav', winsound.SND_ASYNC)
 
         command = obj.command()
-        print(command.upper())
+        # print(command.upper())
 
         if 'introduce' in command:
             obj.introduce()
@@ -117,6 +117,11 @@ while True:
 
         elif 'want to know' in command:
             obj.wikipedia()
+            winsound.PlaySound('stop.wav', winsound.SND_ASYNC)
+            continue
+
+        elif 'pic' in command or 'pho' in command:
+            obj.capture()
             winsound.PlaySound('stop.wav', winsound.SND_ASYNC)
             continue
 
