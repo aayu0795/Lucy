@@ -63,7 +63,7 @@ class Assistance:
     def calculate(self):
         self.lucy.say('what you want me to calculate')
         self.lucy.runAndWait()
-        winsound.PlaySound('init.wav', winsound.SND_ASYNC)
+        winsound.PlaySound('Sounds/init.wav', winsound.SND_ASYNC)
         cmd_text = self.command()
         if cmd_text is not None:
             a = parser.expr(cmd_text).compile()
@@ -90,7 +90,7 @@ class Assistance:
     def open_website(self):
         self.lucy.say('Which website would you like to open')
         self.lucy.runAndWait()
-        winsound.PlaySound('init.wav', winsound.SND_ASYNC)
+        winsound.PlaySound('Sounds/init.wav', winsound.SND_ASYNC)
         cmd_text = self.command()
         if cmd_text is not None:
             new_cmd = (str(cmd_text).replace('.com', '')).strip()
@@ -175,7 +175,7 @@ class Assistance:
     def play(self):
         self.lucy.say('Which song would you like to play')
         self.lucy.runAndWait()
-        winsound.PlaySound('init.wav', winsound.SND_ASYNC)
+        winsound.PlaySound('Sounds/init.wav', winsound.SND_ASYNC)
         cmd_text = self.command()
         if cmd_text is not None:
             url = "https://www.youtube.com/results?search_query=" + cmd_text.replace(' ', '+')
@@ -188,7 +188,7 @@ class Assistance:
     def wikipedia(self):
         self.lucy.say('What you want to know')
         self.lucy.runAndWait()
-        winsound.PlaySound('init.wav', winsound.SND_ASYNC)
+        winsound.PlaySound('Sounds/init.wav', winsound.SND_ASYNC)
         cmd_text = self.command()
         self.lucy.say('Let me see, what i can find')
         self.lucy.runAndWait()
@@ -197,9 +197,8 @@ class Assistance:
         self.lucy.runAndWait()
         self.lucy.say('Do you want me to read more')
         self.lucy.runAndWait()
-        winsound.PlaySound('init.wav', winsound.SND_ASYNC)
+        winsound.PlaySound('Sounds/init.wav', winsound.SND_ASYNC)
         cmd_text = self.command()
-        winsound.PlaySound('init.wav', winsound.SND_ASYNC)
         if 'yes' in cmd_text and cmd_text is not None:
             self.lucy.say('.'.join(wiki_data[3:]))
             self.lucy.runAndWait()
@@ -210,8 +209,9 @@ class Assistance:
     def capture(self):
         video_capture = cv2.VideoCapture(0, cv2.CAP_DSHOW)
         ret, frame = video_capture.read(0)
-        winsound.PlaySound('click.wav', winsound.SND_ASYNC)
+        winsound.PlaySound('Sounds/click.wav', winsound.SND_ASYNC)
         cv2.flip(frame, 1, frame)
-        cv2.imwrite('img.jpg', frame)
+        now = datetime.now()
+        cv2.imwrite(('Capture_images/img{}{}.jpg'.format(now.strftime('%d_%m_%y_'), time.strftime('%H_%M'))), frame)
         time.sleep(1)
         cv2.destroyAllWindows()
